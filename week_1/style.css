@@ -156,9 +156,16 @@ nav{
     padding: 20px 25px;
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.4s ease;
+    transform: translateX(100%); 
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
     position: relative;
     overflow: hidden;
+}
+
+.contact-email.active, .contact-phone.active, .contact-address.active{
+    transform: translateX(0); 
+    opacity: 1;
 }
 
 .contact-email::before, .contact-phone::before, .contact-address::before {
