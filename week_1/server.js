@@ -37,7 +37,19 @@ setTimeout(() => {
     }
 }, 100);
 
+//appear from top effect 
 
+const slide_ele3 = document.getElementsByClassName('top_slide')[0]; 
+const slide_ele4 = document.getElementsByClassName('top_slide')[1]; 
+
+setTimeout(() => {
+    if (slide_ele3) {
+        slide_ele3.classList.add("active");
+    }
+    if (slide_ele4) {
+        slide_ele4.classList.add("active");
+    }
+}, 700);
 
 
 

@@ -219,7 +219,14 @@ nav{
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
-    transition: transform 0.3s ease;
+    transform: translateY(-100%); 
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.soft_skills.active, .technical_skills.active{
+    transform: translateY(0); 
+    opacity: 1;
 }
 
 .soft_skills::before {
@@ -539,3 +546,4 @@ nav{
         border: 2px solid #fff;
     }
 }
+
