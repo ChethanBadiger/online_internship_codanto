@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tailwind implemention</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- basic utitilies  -->
+    <div class="bg-violet-200 h-10 w-full border-2 border-violet-600 rounded-md my-4 p-2 flex justify-center items-center">
+        <h1 class="text-center font-mono font-extrabold ">Hello World</h1>
+    </div>
+<!-- layout and positions  -->
+    <div class="flex justify-end space-x-6 mt-2">
+        <div class="h-16 w-16 rounded-full bg-blue-400"></div>
+        <div class="h-16 w-16 rounded-full bg-orange-400"></div>
+        <div class="h-16 w-16 rounded-full bg-red-400"></div>
+    </div>
+    <div class="flex flex-col items-center gap-6 mt-2">
+        <div class="h-16 w-16 rounded-full bg-blue-400"></div>
+        <div class="h-16 w-16 rounded-full bg-orange-400"></div>
+        <div class="h-16 w-16 rounded-full bg-red-400"></div>
+    </div>
+    <div class="grid grid-col-3 gap-6 mt-2 mx-4">
+        <div class="h-16 w-16 rounded-full bg-blue-400"></div>
+        <div class="h-16 w-16 rounded-full bg-orange-400"></div>
+        <div class="h-16 w-16 rounded-full bg-red-400"></div>
+    </div>
+
+    <!-- media quries  -->
+     <div class="bg-amber-100 sm:bg-amber-200 md:bg-amber-400 lg:bg-amber-600 xl:bg-amber-800 md:block hidden">
+        <div class="text-black">This text will appear to devices wider than 768px</div>
+     </div>
+
+     <!-- dark and light modes -->
+      <div class="flex justify-center ">
+        <!-- based on device prefecence -->
+          <div class="h-10 w-10 rounded-full bg-red-500 dark:bg-black"></div>
+      </div>
+
+      
+</body>
+</html>
