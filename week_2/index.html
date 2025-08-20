@@ -6,6 +6,23 @@
     <title>tailwind implemention</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="styles.css">
+    <style>
+    /* Custom keyframes */
+    @keyframes slide-in {
+      from {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    .animate-slide-in {
+      animation: slide-in 0.7s ease-out forwards;
+    }
+  </style>
 </head>
 <body>
     <!-- basic utitilies  -->
@@ -40,6 +57,15 @@
           <div class="h-10 w-10 rounded-full bg-red-500 dark:bg-black"></div>
       </div>
 
-      
+      <!-- animations -->
+       
+    <button class="px-4 bg-green-500 text-white rounded-md shadow-lg hover:bg-green-600 animate-bounce">
+      Bounce Button
+    </button>
+
+    <!-- Slide in -->
+    <div class="w-128 h-32 bg-purple-500 text-white rounded-xl flex items-center justify-center text-xl font-semibold animate-slide-in">
+      Sliding Card (refresh the page)
+    </div>
 </body>
 </html>
