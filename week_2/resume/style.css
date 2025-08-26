@@ -1,0 +1,205 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* QUALIFICATIONS SECTION */
+.qualifications {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.08) 100%);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.education, .collage, .course, .internship_events {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.education::before, .collage::before, .course::before, .internship_events::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.education:hover::before, .collage:hover::before, .course:hover::before, .internship_events:hover::before {
+    transform: scaleX(1);
+}
+
+.education:hover, .collage:hover, .course:hover, .internship_events:hover {
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.higher_secondary h2, .collage h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-transform: capitalize;
+}
+
+.higher_secondary h4, .collage h4 {
+    color: black;
+    font-weight: 500;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.higher_secondary .details, .collage .details{
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.collage .line{
+    margin-top: 55px;
+}
+
+.courses, .intership, .event {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.courses li, .intership li, .event li {
+    padding: 12px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border-left: 3px solid #667eea;
+    font-weight: 200;
+    text-transform: capitalize;
+    transition: all 0.3s ease;
+}
+
+.courses .title, .intership .title, .event .title{
+    font-weight: 900;
+    text-align: center;
+}
+
+.courses .title{
+    margin-bottom: 110px;
+}
+
+.courses li:hover, .intership li:hover, .event li:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(5px);
+}
+
+.details {
+    color: #555;
+    font-style: italic;
+    margin-top: 10px;
+    border-top: 100px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    section {
+        margin: 20px 10px;
+        padding: 40px 20px;
+    }
+    
+    .name {
+        font-size: 2.5rem;
+    }
+    
+    .profile-img {
+        width: 120px;
+        height: 120px;
+        font-size: 3rem;
+    }
+    
+    .skills {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .qualifications {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .summary h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .name {
+        font-size: 2rem;
+    }
+    
+    .profile-img {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+    
+    section {
+        padding: 30px 15px;
+        margin: 15px 5px;
+    }
+    
+    .summary h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Scroll animations */
+@media (prefers-reduced-motion: no-preference) {
+    section {
+        transform: translateY(30px);
+        animation: none;
+    }
+    
+    section.animate {
+        animation: slideInUp 0.8s ease-out forwards;
+    }
+}
+
+/* Focus styles for accessibility */
+.contact-email:focus, .contact-phone:focus, .contact-address:focus,
+.skill_names li:focus, .courses li:focus, .intership li:focus, .event li:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    body {
+        background: #000;
+        color: #fff;
+    }
+    
+    section {
+        background: rgba(255, 255, 255, 0.1);
+        border: 2px solid #fff;
+    }
+}
+
