@@ -8,32 +8,48 @@
   </head>
   <body>
     <!-- for serach bar and filters -->
-    <div class="bg-linear-60 from-[#7a3bed] to-[#2862eb] h-80 w-full flex flex-col items-center gap-y-5">
-      <h1 class="font-extrabold text-6xl mt-6.5 text-white">Discover Amazing Cocktails</h1>
-      <p class="font-medium text-2xl text-white mb-5">
+    <div class="bg-linear-60 from-[#7a3bed] to-[#2862eb] lg:h-80 h-90 w-full lg:flex lg:flex-col lg:items-center lg:gap-y-5">
+      <h1 class="font-extrabold lg:text-6xl text-2xl lg:mt-6.5 mb-3 text-white">Discover Amazing Cocktails</h1>
+      <p class="font-medium lg:text-2xl text-white mb-5">
         Searching amazing cocktails unlocks flavors, creativity, and endless refreshing possibilities.
       </p>
 
-      <div class="h-10 w-4xl bg-white rounded-md flex items-center">
-        <input class="ml-4 border-none outline-none w-[80%]" type="text" placeholder="Search cocktails...">
-        <button class="bg-blue-500 h-[80%] w-[15%] rounded-lg ml-4 text-white font-medium" onclick="loadTable()" type="submit">Search</button>
+      <div class="h-10 lg:w-4xl bg-white rounded-md flex items-center mb-3">
+        <input id="filter" class="ml-4 border-none outline-none w-[80%]" type="text" placeholder="Search cocktails...">
+        <button class="bg-blue-500 h-[80%] w-[15%] rounded-lg lg:ml-4 text-white font-medium active:bg-blue-300 active:translate-y-1 " onclick="loadTable()" type="submit">Search</button>
       </div>
 
       <!-- filter buttons -->
-      <div class="flex justify-center items-center gap-x-6">
-        <button class="text-white font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-300 ease-in-out">IBA</button>
-        <button class="text-white font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-300 ease-in-out">ContemporaryClassic</button>
-        <button class="text-white font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-300 ease-in-out">Classic</button>
-        <button class="text-white font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-300 ease-in-out">Alcoholic</button>
-        <button class="text-white font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-300 ease-in-out">Passion</button>
-        <button class="text-white font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-300 ease-in-out">DinnerParty</button>
+      <div class="lg:flex lg:justify-center lg:items-center lg:gap-x-6">
+        <button class="text-white mb-3 font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-200 ease-in active:bg-[#9a9aeb] active:translate-y-1">IBA</button>
+        <button class="text-white mb-3 font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-200 ease-in active:bg-[#9a9aeb] active:translate-y-1">ContemporaryClassic</button>
+        <button class="text-white mb-3 font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-200 ease-in active:bg-[#9a9aeb] active:translate-y-1">Classic</button>
+        <button class="text-white mb-3 font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-200 ease-in active:bg-[#9a9aeb] active:translate-y-1">Alcoholic</button>
+        <button class="text-white mb-3 font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-200 ease-in active:bg-[#9a9aeb] active:translate-y-1">Passion</button>
+        <button class="text-white mb-3 font-bold bg-[#7d7ded] py-2 px-4 rounded-md hover:scale-110 transition duration-200 ease-in active:bg-[#9a9aeb] active:translate-y-1">DinnerParty</button>
+        <div>
+          <button class="flex items-center justify-center bg-linear-30 from-[#AF40FF] to-[#5B42F3] border-0 rounded-lg text-white text-xl py-4.5 px-6 decoration-0 hover:outline-0 active:outline-0 hover:scale-110 transition duration-200 ease-in active:bg-linear-30 active:from-[#ca84fd] active:to-[#9585ff] active:translate-y-1" onclick="random_drink()">random drink</button>
+        </div>
       </div>
     </div>
 
     <!-- display results -->
     <div class="h-10 w-full flex justify-center mt-4 mb-8">
-      <p>showing ? results</p>
-      <div id="api_table"></div>
+      <p id="noOfData"></p>
+    </div>
+    <div class="flex justify-center lg:w-full">
+      <table class="table-auto" id="drinks_table">
+        <thead class="">
+          <tr class="">
+            <td class="lg:p-3 p-1.5 text-center font-extrabold text-xs lg:text-2xl">Image</td>
+            <td class="lg:p-3 p-1.5 text-center font-extrabold text-xs lg:text-2xl">Name</td>
+            <td class="lg:p-3 p-1.5 text-center font-extrabold text-xs lg:text-2xl">Category</td>
+            <td class="lg:p-3 p-1.5 text-center font-extrabold text-xs lg:text-2xl">is it Alcoholic?</td>
+            <td class="lg:p-3 p-1.5 text-center font-extrabold text-xs lg:text-2xl">which Glass?</td>  
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
     </div>
 
     <!-- js script -->
