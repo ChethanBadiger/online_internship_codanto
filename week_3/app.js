@@ -12,7 +12,7 @@ async function loadTable(){
         drink_table.innerHTML = '';
         response.drinks.forEach(drink => {
             let row = `<tr class="border-y-2 hover:scale-110 transition duration-200 ease-in-out">
-                            <td class="lg:p-3 p-1.5"><img class="rounded-md lg:w-36 w-20" src="${drink.strDrinkThumb}" /></td>
+                            <td class="lg:p-3 p-1.5"><img class="rounded-md w-36" src="${drink.strDrinkThumb}" /></td>
                             <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strDrink}</td>
                             <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strCategory}</td>
                             <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strAlcoholic}</td>
