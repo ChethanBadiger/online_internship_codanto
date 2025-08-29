@@ -36,11 +36,11 @@ async function random_drink() {
         drink_table.innerHTML = '';
         response.drinks.forEach(drink => {
             let row = `<tr class="border-y-2 hover:scale-110 transition duration-200 ease-in-out">
-                            <td class="p-3"><img class="rounded-md" src="${drink.strDrinkThumb}" width="150" /></td>
-                            <td class="p-3 text-center text-lg">${drink.strDrink}</td>
-                            <td class="p-3 text-center text-lg">${drink.strCategory}</td>
-                            <td class="p-3 text-center text-lg">${drink.strAlcoholic}</td>
-                            <td class="p-3 text-center text-lg">${drink.strGlass}</td>
+                            <td class="lg:p-3 p-1.5"><img class="rounded-md w-36" src="${drink.strDrinkThumb}" /></td>
+                            <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strDrink}</td>
+                            <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strCategory}</td>
+                            <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strAlcoholic}</td>
+                            <td class="lg:p-3 p-1.5 text-center lg:text-lg text-sm">${drink.strGlass}</td>
                         </tr>`;
             drink_table.innerHTML = row;
         });

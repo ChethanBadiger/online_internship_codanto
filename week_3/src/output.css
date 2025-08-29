@@ -3,12 +3,6 @@
 .mt-4 {
   margin-top: calc(var(--spacing) * 4);
 }
-.mt-6 {
-  margin-top: calc(var(--spacing) * 6);
-}
-.mt-6\.5 {
-  margin-top: calc(var(--spacing) * 6.5);
-}
 .mb-3 {
   margin-bottom: calc(var(--spacing) * 3);
 }
@@ -24,35 +18,14 @@
 .flex {
   display: flex;
 }
-.table {
-  display: table;
-}
 .h-10 {
   height: calc(var(--spacing) * 10);
-}
-.h-80 {
-  height: calc(var(--spacing) * 80);
-}
-.h-85 {
-  height: calc(var(--spacing) * 85);
 }
 .h-90 {
   height: calc(var(--spacing) * 90);
 }
-.h-100 {
-  height: calc(var(--spacing) * 100);
-}
 .h-\[80\%\] {
   height: 80%;
-}
-.w-4xl {
-  width: var(--container-4xl);
-}
-.w-12 {
-  width: calc(var(--spacing) * 12);
-}
-.w-20 {
-  width: calc(var(--spacing) * 20);
 }
 .w-36 {
   width: calc(var(--spacing) * 36);
@@ -69,33 +42,17 @@
 .table-auto {
   table-layout: auto;
 }
-.border-collapse {
-  border-collapse: collapse;
-}
-.resize {
-  resize: both;
-}
 .items-center {
   align-items: center;
 }
 .justify-center {
   justify-content: center;
 }
-.gap-x-6 {
-  column-gap: calc(var(--spacing) * 6);
-}
-.gap-y-5 {
-  row-gap: calc(var(--spacing) * 5);
-}
 .rounded-lg {
   border-radius: var(--radius-lg);
 }
 .rounded-md {
   border-radius: var(--radius-md);
-}
-.border {
-  border-style: var(--tw-border-style);
-  border-width: 1px;
 }
 .border-0 {
   border-style: var(--tw-border-style);
@@ -148,14 +105,8 @@
   --tw-gradient-to: #2862eb;
   --tw-gradient-stops: var(--tw-gradient-via-stops, var(--tw-gradient-position), var(--tw-gradient-from) var(--tw-gradient-from-position), var(--tw-gradient-to) var(--tw-gradient-to-position));
 }
-.p-1 {
-  padding: calc(var(--spacing) * 1);
-}
 .p-1\.5 {
   padding: calc(var(--spacing) * 1.5);
-}
-.p-3 {
-  padding: calc(var(--spacing) * 3);
 }
 .px-4 {
   padding-inline: calc(var(--spacing) * 4);
@@ -166,9 +117,6 @@
 .py-2 {
   padding-block: calc(var(--spacing) * 2);
 }
-.py-4 {
-  padding-block: calc(var(--spacing) * 4);
-}
 .py-4\.5 {
   padding-block: calc(var(--spacing) * 4.5);
 }
@@ -178,14 +126,6 @@
 .text-2xl {
   font-size: var(--text-2xl);
   line-height: var(--tw-leading, var(--text-2xl--line-height));
-}
-.text-6xl {
-  font-size: var(--text-6xl);
-  line-height: var(--tw-leading, var(--text-6xl--line-height));
-}
-.text-lg {
-  font-size: var(--text-lg);
-  line-height: var(--tw-leading, var(--text-lg--line-height));
 }
 .text-sm {
   font-size: var(--text-sm);
@@ -214,15 +154,8 @@
 .text-white {
   color: var(--color-white);
 }
-.underline {
-  text-decoration-line: underline;
-}
 .decoration-0 {
   text-decoration-thickness: 0px;
-}
-.outline {
-  outline-style: var(--tw-outline-style);
-  outline-width: 1px;
 }
 .filter {
   filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -334,11 +267,6 @@
     width: var(--container-4xl);
   }
 }
-.lg\:w-36 {
-  @media (width >= 64rem) {
-    width: calc(var(--spacing) * 36);
-  }
-}
 .lg\:w-full {
   @media (width >= 64rem) {
     width: 100%;
@@ -390,12 +318,6 @@
   @media (width >= 64rem) {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
-  }
-}
-.lg\:font-extrabold {
-  @media (width >= 64rem) {
-    --tw-font-weight: var(--font-weight-extrabold);
-    font-weight: var(--font-weight-extrabold);
   }
 }
 *, ::after, ::before, ::backdrop, ::file-selector-button {
@@ -553,9 +475,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       "Courier New", monospace;
     --color-blue-300: oklch(80.9% 0.105 251.813);
     --color-blue-500: oklch(62.3% 0.214 259.815);
-    --color-blue-600: oklch(54.6% 0.245 262.881);
-    --color-violet-500: oklch(60.6% 0.25 292.717);
-    --color-fuchsia-500: oklch(66.7% 0.295 322.15);
     --color-white: #fff;
     --spacing: 0.25rem;
     --container-4xl: 56rem;
@@ -571,7 +490,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
     --text-2xl--line-height: calc(2 / 1.5);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
-    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
@@ -785,11 +703,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @property --tw-blur {
   syntax: "*";
   inherits: false;
@@ -866,6 +779,11 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
   inherits: false;
   initial-value: 1;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-translate-x {
   syntax: "*";
   inherits: false;
@@ -895,7 +813,6 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       --tw-gradient-via-position: 50%;
       --tw-gradient-to-position: 100%;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
       --tw-contrast: initial;
@@ -914,6 +831,7 @@ button, input:where([type='button'], [type='reset'], [type='submit']), ::file-se
       --tw-scale-x: 1;
       --tw-scale-y: 1;
       --tw-scale-z: 1;
+      --tw-outline-style: solid;
       --tw-translate-x: 0;
       --tw-translate-y: 0;
       --tw-translate-z: 0;
