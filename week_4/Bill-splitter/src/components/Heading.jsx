@@ -11,7 +11,7 @@ function Heading() {
         <p className='text-gray-500'>Snap the receipt, tap your items, see who owns</p>
         <p className='text-gray-500 mb-10'>what. No sign-ups, no math, no drama.</p>
 
-        <Button name={`${<i class="ri-camera-line"></i>} Scan receipt`} color="bg-orange-600" font_color="text-white"/>
+        <Button name={`${<i className="ri-camera-line"></i>} Scan receipt`} color="bg-orange-600" font_color="text-white"/>
         <Button name="Enter manually" color="bg-white" font_color={`text-black`}/>
     </div>
     </>
