@@ -1,5 +1,6 @@
 import React from "react";
 import qr from "../assets/qr.png";
+import "remixicon/fonts/remixicon.css";
 import { useNavigate } from "react-router";
 
 function Heading() {

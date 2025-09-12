@@ -1,4 +1,5 @@
 import React from "react";
+import "remixicon/fonts/remixicon.css";
 import { useState } from "react";
 
 function EnterManually() {
@@ -57,12 +58,12 @@ function EnterManually() {
                   name="itemName"
                   placeholder="price"
                 />
-                <button onClick={() => removeRow(index)}>X</button>
+                <button onClick={() => removeRow(index)}><i class="ri-close-large-line"></i></button>
               </div>
             ))}
             <div className="mb-5 flex flex-col gap-y-4">
               <button type="button" className="mr-5 py-1.5 border-2 border-gray-400 rounded-md" onClick={addRow}>
-              +  Add Item
+               <i class="ri-add-line"></i> Add Item
               </button>
               <div className="w-full h-0.5 bg-gray-400"></div>
               <div className="flex">
