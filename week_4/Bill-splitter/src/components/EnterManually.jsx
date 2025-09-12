@@ -56,6 +56,7 @@ function EnterManually() {
                   step="0.01"
                   type="number"
                   name="itemName"
+                  min="0"
                   placeholder="price"
                 />
                 <button onClick={() => removeRow(index)}><i class="ri-close-large-line"></i></button>
@@ -69,11 +70,11 @@ function EnterManually() {
               <div className="flex">
                 <div className="flex flex-col">
                 <label>Tip: </label>
-                <input className="bg-white rounded-md p-2 mr-2" type="number" value={tip} onChange={(e) => setTip(e.target.value)} />
+                <input className="bg-white rounded-md p-2 mr-2" type="number" min="0" value={tip} onChange={(e) => setTip(e.target.value)} />
                 </div>
                 <div className="flex flex-col">
                 <label>Tax: </label>
-                <input className="bg-white rounded-md p-2 " type="number" value={tax} onChange={(e) => setTax(e.target.value)} />
+                <input className="bg-white rounded-md p-2 " type="number" min="0" value={tax} onChange={(e) => setTax(e.target.value)} />
                 </div>
               </div>
                 <div className="flex justify-end items-center">
