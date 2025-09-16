@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 function UploadReceipt() {
   const [file, setFile] = useState(null);
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [prompt, setPrompt] = useState("Extract all readable text from this receipt:");
 
   // Convert file to base64
   const toBase64 = (file) =>
@@ -28,11 +28,16 @@ function UploadReceipt() {
     try {
       const base64Image = await toBase64(file);
 
-      const response = await axios.post("/api/scrape-receipt", {
-        base64Image,
+      const response = await fetch("/api/scrape-receipt", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ base64Image, prompt }),
       });
 
-      setResult(response.data.choices[0].message.content);
+      if (!response.ok) throw new Error("Failed to process receipt");
+
+      const data = await response.json();
+      setResult(data.choices[0].message.content);
     } catch (err) {
       console.error(err);
       setResult("Error processing receipt.");
@@ -79,10 +84,18 @@ function UploadReceipt() {
         </div>
       )}
 
+      {/* prompt input */}
+      <textarea
+        value={prompt}
+        onChange={(e) => setPrompt(e.target.value)}
+        className="p-2 w-3/4 mb-4 border rounded-lg"
+        rows={3}
+      />
+
       <button
         onClick={handleUpload}
         disabled={loading}
-        className={`bg-orange-600 py-3 px-10 rounded-lg mb-4 shadow-xl/20 text-white font-medium`}
+        className="bg-orange-600 py-3 px-10 rounded-lg mb-4 shadow-xl/20 text-white font-medium"
       >
         {loading ? "Processing..." : "Scrape the Bill"}
       </button>
