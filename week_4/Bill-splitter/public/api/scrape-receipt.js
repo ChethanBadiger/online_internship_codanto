@@ -9,7 +9,7 @@ export default async function handler(req, res) {
     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.scarapeReceipt}`, // ✅ comes from Vercel env
+        Authorization: `Bearer ${process.env.scarapeReceipt}`, // from Vercel
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
