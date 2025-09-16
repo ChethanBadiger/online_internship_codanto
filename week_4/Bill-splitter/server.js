@@ -1,71 +1,44 @@
 import express from "express";
-import bodyParser from "body-parser";
+import cors from "cors";
+import multer from "multer";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
-import cors from "cors";
 
 dotenv.config();
-
 const app = express();
-const PORT = process.env.PORT || 5000;
+const upload = multer();
 
-// ✅ Allow frontend to call backend
-app.use(
-  cors({
-    origin: "https://online-internship-codanto-pvsf.vercel.app", // your frontend domain
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors());
+app.use(express.json());
 
-app.use(bodyParser.json({ limit: "10mb" })); // allow big base64 images
-
-app.post("/api/scrape-receipt", async (req, res) => {
+// OCR proxy route
+app.post("/api/extract", upload.single("image"), async (req, res) => {
   try {
-    const { base64Image, prompt } = req.body;
+    const file = req.file;
+    if (!file) return res.status(400).json({ error: "No file uploaded" });
 
-    if (!process.env.API_KEY) {
-      return res.status(500).json({ error: "Missing API_KEY in environment" });
-    }
+    // Convert file buffer to base64
+    const base64Image = file.buffer.toString("base64");
 
-    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    // Call OpenRouter API
+    const response = await fetch("https://api.openrouter.ai/v1/engines/llama-2-7b-chat/completions", {
       method: "POST",
       headers: {
-        Authorization: `Bearer ${process.env.scarapeReceipt}`,
         "Content-Type": "application/json",
+        "Authorization": `Bearer ${process.env.OPENROUTER_KEY}`
       },
       body: JSON.stringify({
-        model: "meta-llama/llama-4-maverick:free",
-        messages: [
-          {
-            role: "system",
-            content: "You are an OCR assistant. Extract text from receipts clearly.",
-          },
-          {
-            role: "user",
-            content: [
-              { type: "input_text", text: prompt || "Extract all readable text from this receipt:" },
-              { type: "input_image", image_url: base64Image },
-            ],
-          },
-        ],
-      }),
+        input: `Extract the items and prices from this receipt:\n${base64Image}`
+      })
     });
-
-    if (!response.ok) {
-      const errText = await response.text();
-      console.error("OpenRouter error:", errText);
-      return res.status(response.status).json({ error: errText });
-    }
 
     const data = await response.json();
     res.json(data);
-  } catch (error) {
-    console.error("Server error:", error.message);
-    res.status(500).json({ error: "Failed to process receipt" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to extract text" });
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5174;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
