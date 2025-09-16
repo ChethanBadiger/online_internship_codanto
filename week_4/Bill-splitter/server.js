@@ -2,11 +2,21 @@ import express from "express";
 import bodyParser from "body-parser";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
-const PORT = 5000;    //process.env.PORT
+const PORT = process.env.PORT || 5000;
+
+// ✅ Allow frontend to call backend
+app.use(
+  cors({
+    origin: "https://online-internship-codanto-pvsf.vercel.app", // your frontend domain
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.use(bodyParser.json({ limit: "10mb" })); // allow big base64 images
 
@@ -49,7 +59,7 @@ app.post("/api/scrape-receipt", async (req, res) => {
     }
 
     const data = await response.json();
-    res.json(data); 
+    res.json(data);
   } catch (error) {
     console.error("Server error:", error.message);
     res.status(500).json({ error: "Failed to process receipt" });
