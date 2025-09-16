@@ -5,7 +5,9 @@ function UploadReceipt() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [preview, setPreview] = useState(null);
-  const [prompt, setPrompt] = useState("Extract all readable text from this receipt:");
+  const [prompt, setPrompt] = useState(
+    "Extract all readable text from this receipt:"
+  );
 
   // Convert file to base64
   const toBase64 = (file) =>
@@ -28,7 +30,7 @@ function UploadReceipt() {
     try {
       const base64Image = await toBase64(file);
 
-      const response = await fetch("/api/scrape-receipt", {
+      const response = await fetch("http://localhost:5000/api/scrape-receipt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ base64Image, prompt }),
@@ -59,7 +61,10 @@ function UploadReceipt() {
   return (
     <div className="h-screen w-screen flex mt-11 items-center flex-col">
       <div>
-        <button onClick={() => window.history.back()} className="text-gray-500 mb-5">
+        <button
+          onClick={() => window.history.back()}
+          className="text-gray-500 mb-5"
+        >
           <i className="ri-arrow-left-line"></i> Back
         </button>
         <h1>Upload your receipt</h1>
