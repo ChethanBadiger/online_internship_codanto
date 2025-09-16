@@ -28,6 +28,18 @@ function EnterManually() {
     alert("Submitted!");
   };
 
+  const handleContinue = (e) =>{
+    e.preventDefault();
+    navigate("/AddPerson", {
+      state: {
+        items: row,
+        tip,
+        tax,
+        grandTotal
+      }
+    })
+  }
+
   const itemsTotal = row.reduce((sum, row) => sum + Number(row.price || 0), 0);
   const grandTotal = itemsTotal + Number(tip) + Number(tax);
 
@@ -107,7 +119,7 @@ function EnterManually() {
                 <p className="font-bold text-2xl">{grandTotal}</p>
               </div>
               <button
-                onClick={() => navigate("/AddPerson")}
+                onClick={handleContinue}
                 className="bg-orange-600 py-3 px-30 rounded-lg mb-4 text-white font-medium"
                 type="submit"
               >

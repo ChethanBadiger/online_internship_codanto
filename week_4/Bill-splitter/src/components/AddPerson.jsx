@@ -1,35 +1,153 @@
-import React from "react";
+import { useLocation, useNavigate } from "react-router";
+import { useState } from "react";
 
 function AddPerson() {
-    const total = items.reduce((sum, item) => sum + Number(item.price || 0), 0);
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { items, tip, tax, grandTotal } = state || {
+    items: [],
+    tip: 0,
+    tax: 0,
+    grandTotal: 0,
+  };
+
+  const [people, setPeople] = useState([]);
+  const [assignments, setAssignments] = useState({});
+
+  const addPerson = () => {
+    setPeople([...people, { name: "" }]);
+  };
+
+  const removePerson = (index) => {
+    setPeople(people.filter((_, i) => i !== index));
+
+    const newAssignments = {};
+    Object.entries(assignments).forEach(([itemIdx, assignedPeople]) => {
+      newAssignments[itemIdx] = assignedPeople.filter((pIdx) => pIdx !== index);
+    });
+    setAssignments(newAssignments);
+  };
+
+  const toggleAssign = (itemIdx, personIdx) => {
+    const assignedPeople = assignments[itemIdx] || [];
+    if (assignedPeople.includes(personIdx)) {
+      setAssignments({
+        ...assignments,
+        [itemIdx]: assignedPeople.filter((p) => p !== personIdx),
+      });
+    } else {
+      setAssignments({
+        ...assignments,
+        [itemIdx]: [...assignedPeople, personIdx],
+      });
+    }
+  };
+
+  const splitEvenly = () => {
+    const allPeople = people.map((_, idx) => idx);
+    const newAssignments = {};
+    items.forEach((_, idx) => {
+      newAssignments[idx] = allPeople;
+    });
+    setAssignments(newAssignments);
+  };
 
   return (
-    <div className="w-screen h-screen flex items-center flex-col bg-gray-50 p-6">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-md p-4">
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="font-semibold text-lg">Assign Items</h2>
-          <button className="text-sm border rounded-md px-3 py-1 bg-gray-100 hover:bg-gray-200">
-            Split evenly
+    <div className="h-screen w-full flex items-center flex-col mt-11"> 
+      <div>
+      <button
+        onClick={() => navigate("/manual")}
+        className="text-gray-500 mb-5 flex items-center"
+      >
+        <i className="ri-arrow-left-line mr-1"></i> Back
+      </button>
+
+      <h1 className="font-medium text-black text-2xl mb-2">Who's Splitting?</h1>
+      <p className="text-gray-500 mb-6">Type all the names and assign items</p>
+      </div>
+      {people.map((person, index) => (
+        <div key={index} className="flex items-center mb-3">
+          <input
+            type="text"
+            placeholder={`Person ${index + 1}`}
+            value={person.name}
+            onChange={(e) => {
+              const newPeople = [...people];
+              newPeople[index].name = e.target.value;
+              setPeople(newPeople);
+            }}
+            className="flex-1 border border-gray-300 rounded-md p-2 mr-2"
+          />
+          <button
+            onClick={() => removePerson(index)}
+            className="text-red-500 text-xl"
+          >
+            <i className="ri-delete-bin-fill"></i>
           </button>
         </div>
+      ))}
 
-        {items.map((item, index) => (
+      <button
+        onClick={addPerson}
+        className="border-2 border-gray-300 rounded-lg py-3 text-left px-3 mb-6 hover:bg-gray-100"
+      >
+        + Add Person
+      </button>
+
+      <h2 className="font-semibold text-lg mb-3 flex justify-between items-center">
+        Assign Items
+        <button
+          onClick={splitEvenly}
+          className="border px-3 py-1 rounded-md text-sm hover:bg-gray-100 ml-5"
+        >
+          Split evenly
+        </button>
+      </h2>
+
+      <div className="flex flex-col gap-3 mb-8">
+        {items.map((item, itemIdx) => (
           <div
-            key={index}
-            className="flex justify-between items-center bg-gray-100 rounded-lg px-4 py-3 mb-3"
+            key={itemIdx}
+            className="flex flex-col border rounded-lg p-3 bg-gray-50"
           >
-            <p className="font-medium text-gray-700">{item.Name || "Unnamed"}</p>
-            <p className="font-semibold text-gray-900">
-              ${Number(item.price || 0).toFixed(2)}
-            </p>
+            <div className="flex justify-between items-center mb-2">
+              <span>{item.Name}</span>
+              <span className="font-medium">${Number(item.price).toFixed(2)}</span>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {people.map((person, personIdx) => {
+                const isAssigned =
+                  assignments[itemIdx]?.includes(personIdx) || false;
+                return (
+                  <button
+                    key={personIdx}
+                    onClick={() => toggleAssign(itemIdx, personIdx)}
+                    className={`px-3 py-1 rounded-full border ${
+                      isAssigned
+                        ? "bg-orange-600 text-white border-orange-600"
+                        : "bg-white text-gray-700 border-gray-300"
+                    }`}
+                  >
+                    {person.name || `Person ${personIdx + 1}`}
+                  </button>
+                );
+              })}
+            </div>
           </div>
         ))}
-
-        <div className="flex justify-between items-center border-t pt-4 mt-4">
-          <p className="font-semibold text-gray-600">Total</p>
-          <p className="font-bold text-lg text-gray-900">${total.toFixed(2)}</p>
-        </div>
       </div>
+
+      <button
+        onClick={() =>
+          navigate("/Final", {
+            state: { people, items, tip, tax, grandTotal, assignments },
+          })
+        }
+        className="bg-orange-600 py-3 px-20 rounded-lg text-white font-medium"
+      >
+        Continue
+      </button>
     </div>
   );
 }
